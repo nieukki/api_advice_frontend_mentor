@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import HeaderAdvice from "./components/HeaderAdvice";
+import Quote from "./components/Quote";
+import Divider from "./components/Divider";
+import DrawQuoteButton from "./components/DrawQuoteButton";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [id, setId] = useState(null);
+  const [advice, setAdvice] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchAdvicesData = async () => {
+    try {
+      const response = await fetch("https://api.adviceslip.com/advice");
+      if (!response.ok) {
+        throw new Error(`HTTP error: Status ${response.status}`);
+      }
+      let advicesData = await response.json();
+      setId(advicesData.slip.id);
+      setAdvice(advicesData.slip.advice);
+    } catch (err) {
+      setError(err.message);
+      setId(null);
+      setAdvice(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAdvicesData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-screen h-screen flex items-center justify-center font-family1 bg-neutralDarkBlue">
+      <main className="bg-neutralDarkGreyishBlue flex flex-col items-center w-screen mx-4 rounded-xl relative lg:w-1/3">
+        <HeaderAdvice id={id}></HeaderAdvice>
+        <Quote advice={advice}></Quote>
+        <Divider></Divider>
+        <DrawQuoteButton fetchAdvicesData={fetchAdvicesData}></DrawQuoteButton>
+      </main>
     </div>
   );
 }

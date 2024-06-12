@@ -3,16 +3,18 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      boxShadow: {
+        buttonShadow: "0 0 30px 0 hsl(150, 100%, 66%)",
+      },
       colors: {
-        greenLighter: "hsl(148, 38%, 91%)",
-        greenMedium: "hsl(169, 82%, 27%)",
-        red: "hsl(0, 66%, 54%)",
-        neutralWhite: "hsl(0, 0%, 100%)",
-        greyMedium: "hsl(186, 15%, 59%)",
-        greyDarker: "hsl(187, 24%, 22%)",
+        primaryLightCyan: "hsl(193, 38%, 86%)",
+        primaryNeonGreen: "hsl(150, 100%, 66%)",
+        neutralGreyishBlue: "hsl(217, 19%, 38%)",
+        neutralDarkGreyishBlue: "hsl(217, 19%, 24%)",
+        neutralDarkBlue: "hsl(218, 23%, 16%)",
       },
       fontFamily: {
-        family1: "Karla, sans-serif;",
+        family1: "Manrope, sans-serif;",
       },
       screens: {
         lg: "1440px",
