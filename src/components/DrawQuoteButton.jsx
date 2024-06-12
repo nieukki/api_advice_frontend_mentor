@@ -8,7 +8,7 @@ const DrawQuoteButton = ({ onClick }) => {
       type="button"
       onClick={onClick}
     >
-      <img src={iconDice} alt="dice"></img>
+      <img src={iconDice} alt="dice" />
     </button>
   );
 };

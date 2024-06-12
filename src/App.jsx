@@ -17,6 +17,7 @@ function App() {
       try {
         const response = await fetch("https://api.adviceslip.com/advice", {
           method: "GET",
+          cache: "reload",
         });
         if (!response.ok) {
           throw new Error(`HTTP error: Status ${response.status}`);
